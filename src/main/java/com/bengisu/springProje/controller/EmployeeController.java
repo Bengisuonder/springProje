@@ -3,6 +3,7 @@ package com.bengisu.springProje.controller;
 import com.bengisu.springProje.model.Employee;
 import com.bengisu.springProje.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,5 +62,11 @@ public class EmployeeController
     public List<Employee> findByFirstNameContaining(@PathVariable String firstName)
     {
         return employeeService.findByFirstNameContaining(firstName);
+    }
+
+    @GetMapping("/pageable")
+    public Page<Employee> getAllEmployees(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size)
+    {
+        return employeeService.getAllEmployees(page, size);
     }
 }

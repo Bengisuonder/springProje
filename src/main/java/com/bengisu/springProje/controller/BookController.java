@@ -3,10 +3,9 @@ package com.bengisu.springProje.controller;
 import com.bengisu.springProje.model.Book;
 import com.bengisu.springProje.service.BookService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/book")
@@ -19,5 +18,11 @@ public class BookController
     public Book saveBook(@RequestBody Book book)
     {
         return bookService.saveBook(book);
+    }
+
+    @GetMapping(path = "/list")
+    public List<Book> getAllBooks()
+    {
+        return bookService.getAllBooks();
     }
 }

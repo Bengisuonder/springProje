@@ -1,8 +1,10 @@
 package com.bengisu.springProje.service;
 
 import com.bengisu.springProje.model.Book;
+import java.util.List;
 
 public interface BookService
 {
-    public Book saveBook(Book book);
+    Book saveBook(Book book);
+    List<Book> getAllBooks();
 }

@@ -4,6 +4,9 @@ import com.bengisu.springProje.model.Employee;
 import com.bengisu.springProje.repository.EmployeeRepository;
 import com.bengisu.springProje.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
@@ -28,7 +31,8 @@ public class EmployeeServiceImpl implements EmployeeService
     @Override
     public Employee updateEmployee(Integer id, Employee employee)
     {
-        return employeeRepository.findById(id).map(e -> {
+        return employeeRepository.findById(id).map(e ->
+        {
             e.setFirstName(employee.getFirstName());
             e.setLastName(employee.getLastName());
             e.setDepartment(employee.getDepartment());
@@ -65,5 +69,12 @@ public class EmployeeServiceImpl implements EmployeeService
     public List<Employee> findByFirstNameContaining(String firstName)
     {
         return employeeRepository.findByFirstNameContaining(firstName);
+    }
+
+    @Override
+    public Page<Employee> getAllEmployees(int page, int size)
+    {
+        Pageable pageable = PageRequest.of(page, size);
+        return employeeRepository.findAll(pageable);
     }
 }

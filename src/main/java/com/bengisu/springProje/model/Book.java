@@ -1,5 +1,6 @@
 package com.bengisu.springProje.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,4 +22,9 @@ public class Book
     private String title;
     @Column(name = "author", nullable = false)
     private String author;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "student_id")
+    @JsonBackReference
+    private Student student;
 }

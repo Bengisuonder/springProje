@@ -1,6 +1,9 @@
 package com.bengisu.springProje.service;
 
 import com.bengisu.springProje.model.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.List;
 
 public interface EmployeeService
@@ -13,4 +16,5 @@ public interface EmployeeService
     List<Employee> getEmployeesByDepartment(String dept);
     List<Employee> findByDepartment(String department);
     List<Employee> findByFirstNameContaining(String firstName);
+    Page<Employee> getAllEmployees(int page, int size);
 }
