@@ -15,4 +15,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>
 
     @Query(value = "SELECT * FROM spring.employee WHERE department = :dept", nativeQuery = true)
     List<Employee> findEmployeesByDepartment(@Param("dept") String dept);
+
+    List<Employee> findByFirstNameContaining(String firstName);
+
+    List<Employee> findByDepartment(String department);
 }

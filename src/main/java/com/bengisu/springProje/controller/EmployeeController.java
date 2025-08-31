@@ -1,7 +1,6 @@
 package com.bengisu.springProje.controller;
 
 import com.bengisu.springProje.model.Employee;
-import com.bengisu.springProje.model.Student;
 import com.bengisu.springProje.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,5 +33,17 @@ public class EmployeeController
     public List<Employee> getEmployeesByDepartment(@PathVariable String dept)
     {
         return employeeService.getEmployeesByDepartment(dept);
+    }
+
+    @GetMapping("/findByDepartment/{department}")
+    public List<Employee> findByDepartment(@PathVariable String department)
+    {
+        return employeeService.findByDepartment(department);
+    }
+
+    @GetMapping("/findByName/{firstName}")
+    public List<Employee> findByFirstNameContaining(@PathVariable String firstName)
+    {
+        return employeeService.findByFirstNameContaining(firstName);
     }
 }
