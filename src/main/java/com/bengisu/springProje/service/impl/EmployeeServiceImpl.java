@@ -22,8 +22,25 @@ public class EmployeeServiceImpl implements EmployeeService
     @Override
     public List<Employee> getAllEmployees()
     {
-        List<Employee> employeeList = employeeRepository.findAll();
-        return employeeList;
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee updateEmployee(Integer id, Employee employee)
+    {
+        return employeeRepository.findById(id).map(e -> {
+            e.setFirstName(employee.getFirstName());
+            e.setLastName(employee.getLastName());
+            e.setDepartment(employee.getDepartment());
+            e.setSalary(employee.getSalary());
+            return employeeRepository.save(e);
+        }).orElseThrow(() -> new RuntimeException("Employee not found with id " + id));
+    }
+
+    @Override
+    public void deleteEmployee(Integer id)
+    {
+        employeeRepository.deleteById(id);
     }
 
     @Override

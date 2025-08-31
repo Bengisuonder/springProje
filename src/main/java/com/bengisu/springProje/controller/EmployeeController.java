@@ -21,12 +21,28 @@ public class EmployeeController
     }
 
     @GetMapping(path = "/list")
-    public List<Employee> getAllEmployees() { return employeeService.getAllEmployees(); }
+    public List<Employee> getAllEmployees()
+    {
+        return employeeService.getAllEmployees();
+    }
 
     @GetMapping("/salary/{amount}")
     public List<Employee> getEmployeesWithSalaryGreaterThan(@PathVariable Long amount)
     {
         return employeeService.getEmployeesWithSalaryGreaterThan(amount);
+    }
+
+    @PutMapping("/{id}")
+    public Employee updateEmployee(@PathVariable Integer id, @RequestBody Employee employee)
+    {
+        return employeeService.updateEmployee(id, employee);
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteEmployee(@PathVariable Integer id)
+    {
+        employeeService.deleteEmployee(id);
+        return "Employee with ID " + id + " deleted successfully";
     }
 
     @GetMapping("/department/{dept}")
