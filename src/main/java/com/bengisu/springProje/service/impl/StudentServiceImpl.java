@@ -3,16 +3,16 @@ package com.bengisu.springProje.service.impl;
 import com.bengisu.springProje.model.Student;
 import com.bengisu.springProje.repository.StudentRepository;
 import com.bengisu.springProje.service.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService
 {
-    @Autowired
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     @Override
     public Student saveStudent(Student student)
